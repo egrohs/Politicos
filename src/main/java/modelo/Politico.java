@@ -4,6 +4,6 @@ import java.util.List;
 
 public class Politico {
 	String name, partidoMaisExpressivo, estado, cargoMaisAlto;
-	List<String> urls, codinomes;
+	List<String> urls, codinomes, partidos;
 	int ultimaLegislatura;
 }
