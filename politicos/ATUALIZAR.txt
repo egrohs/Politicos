@@ -1,0 +1,9 @@
+Para executar basta:
+mvn ou ./mvnw
+
+
+Importa csv na coleção politic do banco politicos:
+./csv_into_mongo.py -f politics.csv -m politicos.politic
+
+Regera ao CRUD das entidades:
+yo jhipster:import-jdl modelo-colecoes-jdl.jh 
