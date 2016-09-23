@@ -1,0 +1,66 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration is used for unit/integration tests.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+spring:
+    application:
+        name: politicos
+    jackson:
+        serialization.write_dates_as_timestamps: false
+    data:
+        mongodb:
+            host: localhost
+            port: 27117
+            database: politicos
+    mail:
+        host: localhost
+    mvc:
+        favicon:
+            enabled: false
+    thymeleaf:
+        mode: XHTML
+
+liquibase:
+    contexts: test
+
+security:
+    basic:
+        enabled: false
+
+server:
+    port: 10344
+    address: localhost
+
+# ===================================================================
+# JHipster specific properties
+# ===================================================================
+
+jhipster:
+    async:
+        corePoolSize: 2
+        maxPoolSize: 50
+        queueCapacity: 10000
+    security:
+        rememberMe:
+            # security key (this key should be unique for your application, and kept secret)
+            key: 961bb8d70eaa3ed45f68f0e6c4162430eb8ea72d
+    metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
+        jmx.enabled: true
+    swagger:
+        title: politicos API
+        description: politicos API documentation
+        version: 0.0.1
+        termsOfServiceUrl:
+        contactName:
+        contactUrl:
+        contactEmail:
+        license:
+        licenseUrl:
