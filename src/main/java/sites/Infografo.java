@@ -10,13 +10,13 @@ import org.jsoup.select.Elements;
 import modelo.Politico;
 
 public class Infografo extends Site {
-	public Infografo() throws IOException {
+	public Infografo() throws Exception {
 		super(true);
 	}
 
 	// todos desse site tem ocorrencias ruims...
 	@Override
-	public List<Politico> getData(Document doc) throws IOException {
+	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
 		Elements sels = doc.select("div.alvo > strong");
 		for (Element src : sels) {
 			System.out.println(src.text());
