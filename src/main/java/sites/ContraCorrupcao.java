@@ -9,23 +9,22 @@ import org.jsoup.select.Elements;
 
 import modelo.Politico;
 
-public class Infografo extends Site {
-	public Infografo() throws IOException {
-		super(true);
-	}
-
-	// todos desse site tem ocorrencias ruims...
-	@Override
-	public List<Politico> getData(Document doc) throws IOException {
-		Elements sels = doc.select("div.alvo > strong");
-		for (Element src : sels) {
-			System.out.println(src.text());
-		}
-		return politicos;
+public class ContraCorrupcao extends Site {
+	public ContraCorrupcao() throws IOException {
+		super(false);
 	}
 
 	@Override
 	public String getUrl() {
-		return "http://infograficos.oglobo.globo.com/brasil/politicos-lava-jato.html";
+		return "http://www.contracorrupcao.org/2013/04/lista-da-corrupcao.html";
+	}
+
+	@Override
+	public List<Politico> getData(Document doc) throws IOException {
+		Elements sels = doc.select("td > div > span");
+		for (Element src : sels) {
+			System.out.println(src.text());
+		}
+		return null;
 	}
 }

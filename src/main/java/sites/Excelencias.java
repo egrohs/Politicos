@@ -3,6 +3,7 @@ package sites;
 import java.io.IOException;
 import java.util.List;
 
+import org.jsoup.nodes.Document;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,7 +15,7 @@ public class Excelencias extends Site {
 	}
 
 	@Override
-	public List<Politico> getData() throws IOException {
+	public List<Politico> getData(Document doc) throws IOException {
 		// Ao clicar buscar sem informar nada, ele lista todos? politos do site?
 		WebElement txt = driver.findElement(By.name("busca"));
 		txt.clear();

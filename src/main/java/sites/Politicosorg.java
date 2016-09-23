@@ -3,6 +3,7 @@ package sites;
 import java.io.IOException;
 import java.util.List;
 
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -15,7 +16,7 @@ public class Politicosorg extends Site {
 
 	// a pagina esconde o codigo da tabela?
 	@Override
-	public List<Politico> getData() throws IOException {
+	public List<Politico> getData(Document doc) throws IOException {
 		Elements sels = doc.select("div > ul > li > ul > li > div > span");
 		for (Element src : sels) {// .get(1).children()) {
 			// a[Processos judiciais]
