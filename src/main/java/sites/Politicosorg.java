@@ -1,22 +1,22 @@
-package modelo;
+package sites;
 
 import java.io.IOException;
 import java.util.List;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class Politicosorg implements Site {
-	static String name = "Zilmar Fernandes";
-	static String url = "http://www.politicos.org.br/";
-	static String s = "perfil/$.shtml' + '?scrollto=conteudo-rede";
+import modelo.Politico;
+
+public class Politicosorg extends Site {
+	public Politicosorg() throws IOException {
+		super(true);
+	}
 
 	// a pagina esconde o codigo da tabela?
+	@Override
 	public List<Politico> getData() throws IOException {
-		Document doc = Jsoup.connect(url).get();
-		Elements sels = doc.select("div > ul");
+		Elements sels = doc.select("div > ul > li > ul > li > div > span");
 		for (Element src : sels) {// .get(1).children()) {
 			// a[Processos judiciais]
 			System.out.println(src);
@@ -28,5 +28,10 @@ public class Politicosorg implements Site {
 			// }
 		}
 		return null;
+	}
+
+	@Override
+	public String getUrl() {
+		return "http://www.politicos.org.br/";
 	}
 }
