@@ -39,3 +39,53 @@
         </div>
     </div>
 </div>
+
+<div>
+    <h2>Politics</h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span>Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="codenames"><span>Codenames</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="state"><span>State</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="city"><span>City</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="born"><span>Born</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="email"><span>Email</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="photo"><span>Photo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="parties"><span>Parties</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="positions"><span>Positions</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="urls"><span>Urls</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="legislatures"><span>Legislatures</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="history"><span>History</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="created"><span>Created</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="updated"><span>Updated</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="politic in vm.politics track by politic.id">
+                    <td><a ui-sref="politic-detail({id:politic.id})">{{politic.id}}</a></td>
+                    <td>{{politic.name}}</td>
+                    <td>{{politic.codenames}}</td>
+                    <td>{{politic.state}}</td>
+                    <td>{{politic.city}}</td>
+                        <td>{{politic.born | date:'mediumDate'}}</td>
+                    <td>{{politic.email}}</td>
+                    <td>{{politic.photo}}</td>
+                    <td>{{politic.parties}}</td>
+                    <td>{{politic.positions}}</td>
+                    <td>{{politic.urls}}</td>
+                    <td>{{politic.legislatures}}</td>
+                    <td>{{politic.history}}</td>
+                    <td>{{politic.created | date:'medium'}}</td>
+                    <td>{{politic.updated | date:'medium'}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
