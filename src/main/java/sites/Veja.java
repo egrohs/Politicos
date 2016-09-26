@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 import modelo.Politico;
 
 public class Veja extends Site {
-	public Veja() throws IOException {
+	public Veja() throws Exception {
 		super(false);
 	}
 
@@ -18,14 +18,14 @@ public class Veja extends Site {
 	String s = "perfil/$.shtml' + '?scrollto=conteudo-rede";
 
 	// todos desse site tem ocorrencias ruims...
-	public List<Politico> getData(Document doc) throws IOException {
+	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
 		Elements sels = doc.select("select");
 		for (Element src : sels.get(1).children()) {
 			if (src.tagName().equals("option")) {
-//				if (name.equals(src.text())) {
-//					System.out.println(src);
-//					break;
-//				}
+				// if (name.equals(src.text())) {
+				// System.out.println(src);
+				// break;
+				// }
 				System.out.println(src.attr("value"));
 				// Document doc1 = Jsoup.connect(url+s.replaceFirst("\\$",
 				// )).get();
