@@ -1,91 +1,27 @@
-<div ng-cloak>
-    <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
-        </div>
-        <div class="col-md-8">
-            <h1>Welcome, Java Hipster!</h1>
-            <p class="lead">This is your homepage</p>
+<style media="screen" type="text/css">
+.deckgrid[deckgrid]::before {
+    /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
+    content: '4 .column.column-1-4';
+    font-size: 0; /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
+    visibility: hidden;
+}
+.deckgrid .column {
+    float: left;
+}
+.deckgrid .column-1-4 {
+    width: 25%;
+}
+</style>
 
-            <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false">
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false">
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
-            </div>
-
-            <p>
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank" >follow @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
-            </p>
-        </div>
-    </div>
-</div>
+<h2>Politics</h2>
 
 <div>
-    <h2>Politics</h2>
-    <jhi-alert></jhi-alert>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="name"><span>Name</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="codenames"><span>Codenames</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="state"><span>State</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="city"><span>City</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="born"><span>Born</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="email"><span>Email</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="photo"><span>Photo</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="parties"><span>Parties</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="positions"><span>Positions</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="urls"><span>Urls</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="legislatures"><span>Legislatures</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="history"><span>History</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="created"><span>Created</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="updated"><span>Updated</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                <tr ng-repeat="politic in vm.politics track by politic.id">
-                    <td><a ui-sref="politic-detail({id:politic.id})">{{politic.id}}</a></td>
-                    <td>{{politic.name}}</td>
-                    <td>{{politic.codenames}}</td>
-                    <td>{{politic.state}}</td>
-                    <td>{{politic.city}}</td>
-                        <td>{{politic.born | date:'mediumDate'}}</td>
-                    <td>{{politic.email}}</td>
-                    <td>{{politic.photo}}</td>
-                    <td>{{politic.parties}}</td>
-                    <td>{{politic.positions}}</td>
-                    <td>{{politic.urls}}</td>
-                    <td>{{politic.legislatures}}</td>
-                    <td>{{politic.history}}</td>
-                    <td>{{politic.created | date:'medium'}}</td>
-                    <td>{{politic.updated | date:'medium'}}</td>
-
-                </tr>
-            </tbody>
-        </table>
+<div deckgrid class="deckgrid" source="vm.politics">
+    <div class="a-card">
+	<img src="" data-ng-src="{{card.src}}">	
+	<a ui-sref="politic-detail({id:card.id})"><h3>{{card.name}}</h3></a>
     </div>
 </div>
+</div>
+
+</br></br>
