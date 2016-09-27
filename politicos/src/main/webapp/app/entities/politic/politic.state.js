@@ -13,7 +13,6 @@
             parent: 'entity',
             url: '/politic',
             data: {
-                authorities: ['ROLE_USER'],
                 pageTitle: 'Politics'
             },
             views: {
@@ -30,7 +29,6 @@
             parent: 'entity',
             url: '/politic/{id}',
             data: {
-                authorities: ['ROLE_USER'],
                 pageTitle: 'Politic'
             },
             views: {
