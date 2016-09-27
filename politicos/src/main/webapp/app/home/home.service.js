@@ -16,13 +16,14 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
+                        data.born = DateUtils.convertLocalDateFromServer(data.born);
                         data.created = DateUtils.convertDateTimeFromServer(data.created);
                         data.updated = DateUtils.convertDateTimeFromServer(data.updated);
                     }
                     return data;
                 }
-            },
-            'update': { method:'PUT' }
+            }
         });
     }
+
 })();

@@ -1,41 +1,64 @@
-<div ng-cloak>
-    <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
-        </div>
-        <div class="col-md-8">
-            <h1>Welcome, Java Hipster!</h1>
-            <p class="lead">This is your homepage</p>
+<style media="screen" type="text/css">
+.dynamic-grid {
+  position: relative;
+  display: none;
+}
+.dynamic-grid.angular-grid {
+  display: block;
+}
+.grid {
+  position: absolute;
+  list-style: none;
+  background: #ffffff;;
+  box-sizing: border-box;
+  -webkit-transition: all 400ms ease;
+  transition: all 400ms ease;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.grid.ng-leave {
+  -webkit-transition: all ease 400ms;
+  transition: all ease 400ms;
+}
+.grid.ng-leave.ng-leave-active {
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  opacity: 0;
+}
+.grid.ng-enter {
+  -webkit-transition: all ease 400ms;
+  transition: all ease 400ms;
+  -webkit-transition-delay: 500ms;
+  transition-delay: 500ms;
+  -webkit-transform: scale(0.5);
+   transform: scale(0.5);
+  opacity: 0;
+}
+.grid.ng-enter.ng-enter-active {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+.grid-img {
+  width: 100%;
+  vertical-align: middle;
+  background-color: #fff;
+  opacity: 0;
+  visibility: hidden;
+}
+.grid-img.img-loaded {
+  visibility: visible;
+  opacity: 1;
+}
 
-            <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
+</style>
 
-                <div class="alert alert-warning" ng-switch-when="false">
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
+<h2>Politics</h2>
 
-                <div class="alert alert-warning" ng-switch-when="false">
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
-            </div>
+<ul class="dynamic-grid" angular-grid="images" ag-grid-width="70" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="'#gallery-wrap'" ag-infinite-scroll="loadMore()" refresh-on-img-load="true">
+     <li data-ng-repeat="pic in images" class="grid" data-ng-clock>
+        <img src="{{pic.foto}}" class="grid-img" data-actual-width="{{pic.actualWidth}}"  data-actual-height="{{pic.actualHeight}}" />
+        <p>{{pic.nome}}</p>
+     </li>
+</ul>
 
-            <p>
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank" >follow @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
-            </p>
-        </div>
-    </div>
-</div>
