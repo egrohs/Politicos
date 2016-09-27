@@ -19,7 +19,7 @@ public class JavaBeanToCsv {
 		CSVWriter csvWriter = null;
 		try {
 			// Create CSVWriter for writing to Employee.csv
-			csvWriter = new CSVWriter(new OutputStreamWriter(new FileOutputStream("saida.csv"), "UTF-8"));
+			csvWriter = new CSVWriter(new OutputStreamWriter(new FileOutputStream("politicos.csv"), "UTF-8"));
 			BeanToCsv bc = new BeanToCsv();
 			// mapping of columns with their positions
 			ColumnPositionMappingStrategy mappingStrategy = new ColumnPositionMappingStrategy();
@@ -59,7 +59,7 @@ public class JavaBeanToCsv {
 
 	public static List<Politico> read() throws Exception {
 		CsvToBean csv = new CsvToBean();
-		CSVReader csvReader = new CSVReader(new InputStreamReader(new FileInputStream("saida.csv"), "UTF-8"));
+		CSVReader csvReader = new CSVReader(new InputStreamReader(new FileInputStream("politicos.csv"), "UTF-8"));
 		// Set column mapping strategy
 		List<Politico> list = csv.parse(setColumMapping(), csvReader);
 		System.out.println(list.size() + " politicos lidos.");

@@ -23,7 +23,6 @@ public abstract class Site {
 	public abstract List<Politico> getData(Document doc, List<Politico> politicos) throws IOException;
 
 	public Site(boolean needDriver) throws Exception {
-		List<Politico> politicos = JavaBeanToCsv.read();
 		if (needDriver) {
 			// FirefoxProfile profile = new FirefoxProfile();
 			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
@@ -32,7 +31,10 @@ public abstract class Site {
 			// ((HtmlUnitDriver)driver).setJavascriptEnabled(true);
 			driver = new ChromeDriver();
 		}
+		//for (String n : deps) {
+List<Politico> politicos = JavaBeanToCsv.read();
 		politicos = getData(navega(getUrl()), politicos);
+		//}
 		if (driver != null) {
 			driver.close();
 		}
