@@ -58,7 +58,7 @@
 <ul class="dynamic-grid" angular-grid="images" ag-grid-width="70" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="'#gallery-wrap'" ag-infinite-scroll="loadMore()" refresh-on-img-load="true">
      <li data-ng-repeat="pic in images" class="grid" data-ng-clock>
         <img src="{{pic.foto}}" class="grid-img" data-actual-width="{{pic.actualWidth}}"  data-actual-height="{{pic.actualHeight}}" />
-        <p>{{pic.nome}}</p>
+        <p>{{pic.codinomes}}</p>
      </li>
 </ul>
 
