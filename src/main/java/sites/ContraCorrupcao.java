@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
 import modelo.Politico;
 
 public class ContraCorrupcao extends Site {
-	public ContraCorrupcao() throws IOException {
+	public ContraCorrupcao() throws Exception{
 		super(false);
 	}
 
@@ -20,7 +20,7 @@ public class ContraCorrupcao extends Site {
 	}
 
 	@Override
-	public List<Politico> getData(Document doc) throws IOException {
+	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
 		Elements sels = doc.select("td > div > span");
 		for (Element src : sels) {
 			System.out.println(src.text());

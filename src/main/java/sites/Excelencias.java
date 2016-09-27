@@ -10,12 +10,12 @@ import org.openqa.selenium.WebElement;
 import modelo.Politico;
 
 public class Excelencias extends Site {
-	public Excelencias() throws IOException {
+	public Excelencias() throws Exception {
 		super(true);
 	}
 
 	@Override
-	public List<Politico> getData(Document doc) throws IOException {
+	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
 		// Ao clicar buscar sem informar nada, ele lista todos? politos do site?
 		WebElement txt = driver.findElement(By.name("busca"));
 		txt.clear();

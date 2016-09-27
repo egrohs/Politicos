@@ -10,13 +10,13 @@ import org.jsoup.select.Elements;
 import modelo.Politico;
 
 public class Politicosorg extends Site {
-	public Politicosorg() throws IOException {
+	public Politicosorg() throws Exception {
 		super(true);
 	}
 
 	// a pagina esconde o codigo da tabela?
 	@Override
-	public List<Politico> getData(Document doc) throws IOException {
+	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
 		Elements sels = doc.select("div > ul > li > ul > li > div > span");
 		for (Element src : sels) {// .get(1).children()) {
 			// a[Processos judiciais]

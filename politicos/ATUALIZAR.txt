@@ -7,3 +7,6 @@ Importa csv na coleção politic do banco politicos:
 
 Regera ao CRUD das entidades:
 yo jhipster:import-jdl modelo-colecoes-jdl.jh 
+
+
+mongoimport --db politicos --collection politic --type csv --headerline --file C:\Users\egrohs\git\Politicos\politicos\politics.csv
