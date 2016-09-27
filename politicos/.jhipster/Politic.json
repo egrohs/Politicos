@@ -3,54 +3,23 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "name",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldName": "camarapk",
+            "fieldType": "Long"
         },
         {
-            "fieldName": "codenames",
+            "fieldName": "nome",
             "fieldType": "String"
         },
         {
-            "fieldName": "state",
+            "fieldName": "codinomes",
             "fieldType": "String"
         },
         {
-            "fieldName": "city",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "born",
-            "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "email",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "photo",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "parties",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "positions",
+            "fieldName": "foto",
             "fieldType": "String"
         },
         {
             "fieldName": "urls",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "legislatures",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "history",
             "fieldType": "String"
         },
         {
@@ -62,7 +31,7 @@
             "fieldType": "ZonedDateTime"
         }
     ],
-    "changelogDate": "20160923191120",
+    "changelogDate": "20160927132542",
     "entityTableName": "politic",
     "dto": "no",
     "pagination": "infinite-scroll",

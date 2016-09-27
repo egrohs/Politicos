@@ -67,7 +67,7 @@ class PoliticGatlingTest extends Simulation {
             .exec(http("Create new politic")
             .post("/api/politics")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "codenames":"SAMPLE_TEXT", "state":"SAMPLE_TEXT", "city":"SAMPLE_TEXT", "born":"2020-01-01T00:00:00.000Z", "email":"SAMPLE_TEXT", "photo":"SAMPLE_TEXT", "parties":"SAMPLE_TEXT", "positions":"SAMPLE_TEXT", "urls":"SAMPLE_TEXT", "legislatures":"SAMPLE_TEXT", "history":"SAMPLE_TEXT", "created":"2020-01-01T00:00:00.000Z", "updated":"2020-01-01T00:00:00.000Z"}""")).asJSON
+            .body(StringBody("""{"id":null, "camarapk":null, "nome":"SAMPLE_TEXT", "codinomes":"SAMPLE_TEXT", "foto":"SAMPLE_TEXT", "urls":"SAMPLE_TEXT", "created":"2020-01-01T00:00:00.000Z", "updated":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_politic_url"))).exitHereIfFailed
             .pause(10)

@@ -4,9 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
@@ -22,42 +20,20 @@ public class Politic implements Serializable {
     @Id
     private String id;
 
-    @NotNull
-    @Field("name")
-    private String name;
+    @Field("camarapk")
+    private Long camarapk;
 
-    @Field("codenames")
-    private String codenames;
+    @Field("nome")
+    private String nome;
 
-    @Field("state")
-    private String state;
+    @Field("codinomes")
+    private String codinomes;
 
-    @Field("city")
-    private String city;
-
-    @Field("born")
-    private LocalDate born;
-
-    @Field("email")
-    private String email;
-
-    @Field("photo")
-    private String photo;
-
-    @Field("parties")
-    private String parties;
-
-    @Field("positions")
-    private String positions;
+    @Field("foto")
+    private String foto;
 
     @Field("urls")
     private String urls;
-
-    @Field("legislatures")
-    private String legislatures;
-
-    @Field("history")
-    private String history;
 
     @Field("created")
     private ZonedDateTime created;
@@ -73,121 +49,56 @@ public class Politic implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getCamarapk() {
+        return camarapk;
     }
 
-    public Politic name(String name) {
-        this.name = name;
+    public Politic camarapk(Long camarapk) {
+        this.camarapk = camarapk;
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCamarapk(Long camarapk) {
+        this.camarapk = camarapk;
     }
 
-    public String getCodenames() {
-        return codenames;
+    public String getNome() {
+        return nome;
     }
 
-    public Politic codenames(String codenames) {
-        this.codenames = codenames;
+    public Politic nome(String nome) {
+        this.nome = nome;
         return this;
     }
 
-    public void setCodenames(String codenames) {
-        this.codenames = codenames;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getState() {
-        return state;
+    public String getCodinomes() {
+        return codinomes;
     }
 
-    public Politic state(String state) {
-        this.state = state;
+    public Politic codinomes(String codinomes) {
+        this.codinomes = codinomes;
         return this;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCodinomes(String codinomes) {
+        this.codinomes = codinomes;
     }
 
-    public String getCity() {
-        return city;
+    public String getFoto() {
+        return foto;
     }
 
-    public Politic city(String city) {
-        this.city = city;
+    public Politic foto(String foto) {
+        this.foto = foto;
         return this;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public LocalDate getBorn() {
-        return born;
-    }
-
-    public Politic born(LocalDate born) {
-        this.born = born;
-        return this;
-    }
-
-    public void setBorn(LocalDate born) {
-        this.born = born;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Politic email(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public Politic photo(String photo) {
-        this.photo = photo;
-        return this;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getParties() {
-        return parties;
-    }
-
-    public Politic parties(String parties) {
-        this.parties = parties;
-        return this;
-    }
-
-    public void setParties(String parties) {
-        this.parties = parties;
-    }
-
-    public String getPositions() {
-        return positions;
-    }
-
-    public Politic positions(String positions) {
-        this.positions = positions;
-        return this;
-    }
-
-    public void setPositions(String positions) {
-        this.positions = positions;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public String getUrls() {
@@ -201,32 +112,6 @@ public class Politic implements Serializable {
 
     public void setUrls(String urls) {
         this.urls = urls;
-    }
-
-    public String getLegislatures() {
-        return legislatures;
-    }
-
-    public Politic legislatures(String legislatures) {
-        this.legislatures = legislatures;
-        return this;
-    }
-
-    public void setLegislatures(String legislatures) {
-        this.legislatures = legislatures;
-    }
-
-    public String getHistory() {
-        return history;
-    }
-
-    public Politic history(String history) {
-        this.history = history;
-        return this;
-    }
-
-    public void setHistory(String history) {
-        this.history = history;
     }
 
     public ZonedDateTime getCreated() {
@@ -279,18 +164,11 @@ public class Politic implements Serializable {
     public String toString() {
         return "Politic{" +
             "id=" + id +
-            ", name='" + name + "'" +
-            ", codenames='" + codenames + "'" +
-            ", state='" + state + "'" +
-            ", city='" + city + "'" +
-            ", born='" + born + "'" +
-            ", email='" + email + "'" +
-            ", photo='" + photo + "'" +
-            ", parties='" + parties + "'" +
-            ", positions='" + positions + "'" +
+            ", camarapk='" + camarapk + "'" +
+            ", nome='" + nome + "'" +
+            ", codinomes='" + codinomes + "'" +
+            ", foto='" + foto + "'" +
             ", urls='" + urls + "'" +
-            ", legislatures='" + legislatures + "'" +
-            ", history='" + history + "'" +
             ", created='" + created + "'" +
             ", updated='" + updated + "'" +
             '}';

@@ -1,5 +1,5 @@
 
-<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -14,85 +14,33 @@
                     ng-model="vm.politic.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_name">Name</label>
-            <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="vm.politic.name"
-                    required />
-            <div ng-show="editForm.name.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.name.$error.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_codenames">Codenames</label>
-            <input type="text" class="form-control" name="codenames" id="field_codenames"
-                    ng-model="vm.politic.codenames"
+            <label class="control-label" for="field_camarapk">Camarapk</label>
+            <input type="number" class="form-control" name="camarapk" id="field_camarapk"
+                    ng-model="vm.politic.camarapk"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_state">State</label>
-            <input type="text" class="form-control" name="state" id="field_state"
-                    ng-model="vm.politic.state"
+            <label class="control-label" for="field_nome">Nome</label>
+            <input type="text" class="form-control" name="nome" id="field_nome"
+                    ng-model="vm.politic.nome"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_city">City</label>
-            <input type="text" class="form-control" name="city" id="field_city"
-                    ng-model="vm.politic.city"
+            <label class="control-label" for="field_codinomes">Codinomes</label>
+            <input type="text" class="form-control" name="codinomes" id="field_codinomes"
+                    ng-model="vm.politic.codinomes"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_born">Born</label>
-                <div class="input-group">
-                    <input id="field_born" type="text" class="form-control" name="born" uib-datepicker-popup="{{dateformat}}" ng-model="vm.politic.born" is-open="vm.datePickerOpenStatus.born"
-                    />
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('born')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_email">Email</label>
-            <input type="text" class="form-control" name="email" id="field_email"
-                    ng-model="vm.politic.email"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_photo">Photo</label>
-            <input type="text" class="form-control" name="photo" id="field_photo"
-                    ng-model="vm.politic.photo"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_parties">Parties</label>
-            <input type="text" class="form-control" name="parties" id="field_parties"
-                    ng-model="vm.politic.parties"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_positions">Positions</label>
-            <input type="text" class="form-control" name="positions" id="field_positions"
-                    ng-model="vm.politic.positions"
+            <label class="control-label" for="field_foto">Foto</label>
+            <input type="text" class="form-control" name="foto" id="field_foto"
+                    ng-model="vm.politic.foto"
                      />
         </div>
         <div class="form-group">
             <label class="control-label" for="field_urls">Urls</label>
             <input type="text" class="form-control" name="urls" id="field_urls"
                     ng-model="vm.politic.urls"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_legislatures">Legislatures</label>
-            <input type="text" class="form-control" name="legislatures" id="field_legislatures"
-                    ng-model="vm.politic.legislatures"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_history">History</label>
-            <input type="text" class="form-control" name="history" id="field_history"
-                    ng-model="vm.politic.history"
                      />
         </div>
         <div class="form-group">
