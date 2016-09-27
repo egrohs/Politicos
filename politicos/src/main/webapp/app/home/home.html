@@ -1,27 +1,64 @@
 <style media="screen" type="text/css">
-.deckgrid[deckgrid]::before {
-    /* Specifies that the grid should have a maximum of 4 columns. Each column will have the classes 'column' and 'column-1-4' */
-    content: '4 .column.column-1-4';
-    font-size: 0; /* See https://github.com/akoenig/angular-deckgrid/issues/14#issuecomment-35728861 */
-    visibility: hidden;
+.dynamic-grid {
+  position: relative;
+  display: none;
 }
-.deckgrid .column {
-    float: left;
+.dynamic-grid.angular-grid {
+  display: block;
 }
-.deckgrid .column-1-4 {
-    width: 25%;
+.grid {
+  position: absolute;
+  list-style: none;
+  background: #ffffff;;
+  box-sizing: border-box;
+  -webkit-transition: all 400ms ease;
+  transition: all 400ms ease;
+  overflow: hidden;
+  border-radius: 10px;
 }
+.grid.ng-leave {
+  -webkit-transition: all ease 400ms;
+  transition: all ease 400ms;
+}
+.grid.ng-leave.ng-leave-active {
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  opacity: 0;
+}
+.grid.ng-enter {
+  -webkit-transition: all ease 400ms;
+  transition: all ease 400ms;
+  -webkit-transition-delay: 500ms;
+  transition-delay: 500ms;
+  -webkit-transform: scale(0.5);
+   transform: scale(0.5);
+  opacity: 0;
+}
+.grid.ng-enter.ng-enter-active {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+.grid-img {
+  width: 100%;
+  vertical-align: middle;
+  background-color: #fff;
+  opacity: 0;
+  visibility: hidden;
+}
+.grid-img.img-loaded {
+  visibility: visible;
+  opacity: 1;
+}
+
 </style>
 
 <h2>Politics</h2>
 
-<div>
-<div deckgrid class="deckgrid" source="vm.politics">
-    <div class="a-card">
-	<img src="" data-ng-src="{{card.src}}">	
-	<a ui-sref="politic-detail({id:card.id})"><h3>{{card.name}}</h3></a>
-    </div>
-</div>
-</div>
+<ul class="dynamic-grid" angular-grid="images" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="'#gallery-wrap'" ag-infinite-scroll="loadMore()" refresh-on-img-load="true">
+     <li data-ng-repeat="pic in images" class="grid" data-ng-clock>
+        <img src="{{pic.photo}}" class="grid-img" data-actual-width="{{pic.actualWidth}}"  data-actual-height="{{pic.actualHeight}}" />
+        <p>{{pic.name}}</p>
+     </li>
+</ul>
 
-</br></br>
