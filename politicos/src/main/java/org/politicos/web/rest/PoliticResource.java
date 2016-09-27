@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -45,7 +44,7 @@ public class PoliticResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Politic> createPolitic(@Valid @RequestBody Politic politic) throws URISyntaxException {
+    public ResponseEntity<Politic> createPolitic(@RequestBody Politic politic) throws URISyntaxException {
         log.debug("REST request to save Politic : {}", politic);
         if (politic.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("politic", "idexists", "A new politic cannot already have an ID")).body(null);
@@ -69,7 +68,7 @@ public class PoliticResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Politic> updatePolitic(@Valid @RequestBody Politic politic) throws URISyntaxException {
+    public ResponseEntity<Politic> updatePolitic(@RequestBody Politic politic) throws URISyntaxException {
         log.debug("REST request to update Politic : {}", politic);
         if (politic.getId() == null) {
             return createPolitic(politic);

@@ -13,6 +13,7 @@
             parent: 'entity',
             url: '/politic',
             data: {
+                authorities: ['ROLE_USER'],
                 pageTitle: 'Politics'
             },
             views: {
@@ -29,6 +30,7 @@
             parent: 'entity',
             url: '/politic/{id}',
             data: {
+                authorities: ['ROLE_USER'],
                 pageTitle: 'Politic'
             },
             views: {
@@ -93,18 +95,11 @@
                     resolve: {
                         entity: function () {
                             return {
-                                name: null,
-                                codenames: null,
-                                state: null,
-                                city: null,
-                                born: null,
-                                email: null,
-                                photo: null,
-                                parties: null,
-                                positions: null,
+                                camarapk: null,
+                                nome: null,
+                                codinomes: null,
+                                foto: null,
                                 urls: null,
-                                legislatures: null,
-                                history: null,
                                 created: null,
                                 updated: null,
                                 id: null

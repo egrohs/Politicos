@@ -43,7 +43,6 @@
             vm.isSaving = false;
         }
 
-        vm.datePickerOpenStatus.born = false;
         vm.datePickerOpenStatus.created = false;
         vm.datePickerOpenStatus.updated = false;
 

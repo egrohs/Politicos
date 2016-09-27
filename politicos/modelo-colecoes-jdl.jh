@@ -1,19 +1,18 @@
 
 
 entity Politic {
-	id Long required,
-	name String required,
-    codenames String,
-	state String,
-	city String,
-    born LocalDate,
-    email String,
-    photo String,
-    parties String,
-	positions String,
+	camarapk Long,
+	nome String,
+    codinomes String,
+//	city String,
+//    born LocalDate,
+//    email String,
+    foto String,
+//    parties String,
+//	positions String,
     urls String,
-    legislatures String,
-    history String,
+//    legislatures String,
+//    history String,
     created ZonedDateTime,
     updated ZonedDateTime
 }

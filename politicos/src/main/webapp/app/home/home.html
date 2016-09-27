@@ -55,10 +55,10 @@
 
 <h2>Politics</h2>
 
-<ul class="dynamic-grid" angular-grid="images" ag-grid-width="300" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="'#gallery-wrap'" ag-infinite-scroll="loadMore()" refresh-on-img-load="true">
+<ul class="dynamic-grid" angular-grid="images" ag-grid-width="70" ag-gutter-size="10" ag-id="gallery" ag-scroll-container="'#gallery-wrap'" ag-infinite-scroll="loadMore()" refresh-on-img-load="true">
      <li data-ng-repeat="pic in images" class="grid" data-ng-clock>
-        <img src="{{pic.photo}}" class="grid-img" data-actual-width="{{pic.actualWidth}}"  data-actual-height="{{pic.actualHeight}}" />
-        <p>{{pic.name}}</p>
+        <img src="{{pic.foto}}" class="grid-img" data-actual-width="{{pic.actualWidth}}"  data-actual-height="{{pic.actualHeight}}" />
+        <p>{{pic.nome}}</p>
      </li>
 </ul>
 
