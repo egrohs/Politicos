@@ -19,7 +19,7 @@ public class Politicosorg extends Site {
 	@Override
 	public List<Politico> getData(Document doc, List<Politico> politicos) throws IOException {
 		while (true) {
-			WebElement next = driver.findElement(By.xpath("a[text()='»']"));
+			WebElement next = driver.findElement(By.xpath("a[text()='Â»']"));
 			Elements sels = doc.select("div > ul > li > ul > li > div > span");
 			for (Element src : sels) {// .get(1).children()) {
 				// a[Processos judiciais]

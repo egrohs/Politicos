@@ -3,15 +3,15 @@ package modelo;
 public class Politico {
 	// partidoAtual, cargos, excelenciasorg, veja, politicosorg, wiki,
 	// curriculo, camaraFoto, outros
-	private String camaraPk, senadoId, nome, uf, partidoAtual, codinomes, outrosPartidos, profissoes, cargo,
-			legislaturas, foto, urlCamara;
+	private String camaraPk, senadoId, nome, codinomes, uf, partidoAtual, outrosPartidos, profissoes, cargo,
+			legislaturas, foto, urls;
 	// Set<String> urls, codinomes, partidos, cargos, profissoes, legislaturas;
 	// Set<Integer> legislaturas;
 
 	public Politico() {
 	}
 
-	// TODO fazer validação semantica dos dados sendo criados.
+	// TODO fazer validacao semantica dos dados sendo criados.
 	public Politico(String camaraPk, String senadoId, String nome, String codinome, String uf, String partidoAtual,
 			String outrosPartidos, String profissoes, String cargo, String legislaturas, String foto,
 			String urlCamara) {
@@ -25,12 +25,12 @@ public class Politico {
 		this.profissoes = profissoes;
 		this.legislaturas = legislaturas;
 		this.foto = foto;
-		this.urlCamara = urlCamara;
+		this.urls = urlCamara;
 	}
 
 	@Override
 	public String toString() {
-		return senadoId + "\t" + nome + "\t" + uf + "\t" + outrosPartidos + "\t" + urlCamara;
+		return senadoId + "\t" + nome + "\t" + uf + "\t" + outrosPartidos + "\t" + urls;
 	}
 
 	public String getSenadoId() {
@@ -74,11 +74,11 @@ public class Politico {
 	}
 
 	public String getUrls() {
-		return urlCamara;
+		return urls;
 	}
 
 	public void setUrls(String urls) {
-		this.urlCamara = urls;
+		this.urls = urls;
 	}
 
 	public String getCodinomes() {
@@ -112,7 +112,7 @@ public class Politico {
 	public void setLegislaturas(String legislaturas) {
 		this.legislaturas = legislaturas;
 	}
-	
+
 	public String getCargo() {
 		return cargo;
 	}

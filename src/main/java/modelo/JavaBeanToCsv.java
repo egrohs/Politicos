@@ -50,14 +50,6 @@ public class JavaBeanToCsv {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		// new Camara();
-		// String url =
-		// "http://www2.camara.leg.br/deputados/pesquisa/layouts_deputados_biografia?pk=193117&tipo=0";
-		// System.out.println(url.split("pk=")[1].split("&")[0]);
-		read();
-	}
-
 	public static List<Politico> read() throws Exception {
 		CsvToBean csv = new CsvToBean();
 		CSVReader csvReader = new CSVReader(new InputStreamReader(new FileInputStream("politicos.csv"), "UTF-8"));

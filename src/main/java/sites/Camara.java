@@ -86,22 +86,22 @@ public class Camara extends Site {
 					Element bio = doc.select("div.bioDetalhes").first();
 					nome = bio.select("strong").first().text();
 					try {
-						profissoes = bio.select("span:matchesOwn(Profissıes)").first().nextElementSibling().text();
+						profissoes = bio.select("span:matchesOwn(ProfissÔøΩes)").first().nextElementSibling().text();
 					} catch (Exception e) {
 						try {
 							profissoes = bio.select("span:matchesOwn(Escolaridade)").first().child(0).text();
 						} catch (Exception e1) {
-							System.out.println("N„o achou Escolaridade: " + camaraUrl);
+							System.out.println("Nao achou Escolaridade: " + camaraUrl);
 						}
 					}
 				} catch (Exception e1) {
-					System.err.println("N„o achou div.bioDetalhes ou Nome: " + camaraUrl);
+					System.err.println("Nao achou div.bioDetalhes ou Nome: " + camaraUrl);
 				}
 				Elements legs = null;
 				try {
 					legs = doc.select("span:matchesOwn(Legislaturas)").first().siblingElements().select("a > span");
 				} catch (Exception e) {
-					System.out.println("N„o achou div.bioOutros ou Legislaturas: " + camaraUrl);
+					System.out.println("Nao achou div.bioOutros ou Legislaturas: " + camaraUrl);
 				}
 				String legislaturas = "";
 				if (legs != null) {
@@ -116,27 +116,27 @@ public class Camara extends Site {
 				try {
 					camaraFoto = doc.select("div.bioFoto > img").attr("src");
 				} catch (Exception e) {
-					System.out.println("N„o achou div.bioFoto : " + camaraUrl);
+					System.out.println("Nao achou div.bioFoto : " + camaraUrl);
 				}
 
 				String outrosPartidos = "";
 				try {
-					outrosPartidos = doc.select("div:matchesOwn(FiliaÁıes Partid·rias)").first().nextElementSibling()
+					outrosPartidos = doc.select("div:matchesOwn(Filia√ß√µes Partid√°rias)").first().nextElementSibling()
 							.text();
 				} catch (Exception e) {
 					try {
-						outrosPartidos = doc.select("span:matchesOwn(Atividades Partid·rias)").first()
+						outrosPartidos = doc.select("span:matchesOwn(Atividades Partid√°rias)").first()
 								.nextElementSibling().text();
 					} catch (Exception e1) {
-						System.out.println("N„o achou div.bioOutrosTitulo ou Atividades Partid·rias: " + camaraUrl);
+						System.out.println("Nao achou div.bioOutrosTitulo ou Atividades Partid√°rias: " + camaraUrl);
 					}
 				}
 				Politico politico = new Politico(camaraPk, "", nome, codinome, uf, partidoAtual, outrosPartidos,
-						profissoes, "C‚mara", legislaturas, camaraFoto, camaraUrl);
+						profissoes, "Camara", legislaturas, camaraFoto, camaraUrl);
 				politicos.put(camaraUrl, politico);
 				System.out.println(politico);
 			} catch (Exception e2) {
-				System.err.println("N„o achou div.bioNomParlamentrPartido");
+				System.err.println("Nao achou div.bioNomParlamentrPartido");
 			}
 		}
 	}
