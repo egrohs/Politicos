@@ -1,61 +1,60 @@
 package modelo;
 
 public class Politico {
-	String id, nome, UF, codinomes, partidos, profissoes, legislaturas, urls;
+	// partidoAtual, cargos, excelenciasorg, veja, politicosorg, wiki,
+	// curriculo, camaraFoto, outros
+	private String camaraPk, senadoId, nome, uf, partidoAtual, codinomes, outrosPartidos, profissoes, cargo,
+			legislaturas, foto, urlCamara;
 	// Set<String> urls, codinomes, partidos, cargos, profissoes, legislaturas;
 	// Set<Integer> legislaturas;
-	private String foto;
 
 	public Politico() {
 	}
 
-	// public Politico(String nome, String uf, String codinome, String part,
-	// String profs, String legs, String url) {
-	// this.nome = nome;
-	// UF = uf;
-	// codinomes = new HashSet<String>();
-	// codinomes.add(codinome);
-	// partidos = new HashSet<String>();
-	// // partidos.addAll(Arrays.asList(parts));
-	// partidos.add(part);
-	// profissoes = new HashSet<String>();
-	// profissoes.add(profs);
-	// legislaturas = new HashSet<String>();
-	// legislaturas.add(legs);
-	// urls = new HashSet<String>();
-	// urls.add(url);
-	// }
-	public Politico(String id, String nome, String uf, String codinome, String part, String profs, String legs,
-			String url) {
-		this.id = id;
+	// TODO fazer validação semantica dos dados sendo criados.
+	public Politico(String camaraPk, String senadoId, String nome, String codinome, String uf, String partidoAtual,
+			String outrosPartidos, String profissoes, String cargo, String legislaturas, String foto,
+			String urlCamara) {
+		this.camaraPk = camaraPk;
+		this.senadoId = senadoId;
 		this.nome = nome;
-		UF = uf;
-		codinomes = codinome;
-		partidos = part;
-		profissoes = profs;
-		legislaturas = legs;
-		urls = url;
-	}
-
-	public Politico(String id, String nome, String codinome, String foto, String url1) {
-		this.id = id;
-		this.nome = nome;
-		codinomes = codinome;
+		this.codinomes = codinome;
+		this.uf = uf;
+		this.partidoAtual = partidoAtual;
+		this.outrosPartidos = outrosPartidos;
+		this.profissoes = profissoes;
+		this.legislaturas = legislaturas;
 		this.foto = foto;
-		urls = url1;
+		this.urlCamara = urlCamara;
 	}
 
 	@Override
 	public String toString() {
-		return id + "\t" + nome + "\t" + UF + "\t" + partidos + "\t" + urls;
+		return senadoId + "\t" + nome + "\t" + uf + "\t" + outrosPartidos + "\t" + urlCamara;
 	}
 
-	public String getId() {
-		return id;
+	public String getSenadoId() {
+		return senadoId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setSenadoId(String id) {
+		this.senadoId = id;
+	}
+
+	public String getCamaraPk() {
+		return camaraPk;
+	}
+
+	public void setCamaraPk(String camaraPk) {
+		this.camaraPk = camaraPk;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public String getNome() {
@@ -66,20 +65,20 @@ public class Politico {
 		this.nome = nome;
 	}
 
-	public String getUF() {
-		return UF;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setUF(String estado) {
-		this.UF = estado;
+	public void setUf(String estado) {
+		this.uf = estado;
 	}
 
 	public String getUrls() {
-		return urls;
+		return urlCamara;
 	}
 
 	public void setUrls(String urls) {
-		this.urls = urls;
+		this.urlCamara = urls;
 	}
 
 	public String getCodinomes() {
@@ -90,12 +89,12 @@ public class Politico {
 		this.codinomes = codinomes;
 	}
 
-	public String getPartidos() {
-		return partidos;
+	public String getOutrosPartidos() {
+		return outrosPartidos;
 	}
 
-	public void setPartidos(String partidos) {
-		this.partidos = partidos;
+	public void setOutrosPartidos(String partidos) {
+		this.outrosPartidos = partidos;
 	}
 
 	public String getProfissoes() {
@@ -112,5 +111,13 @@ public class Politico {
 
 	public void setLegislaturas(String legislaturas) {
 		this.legislaturas = legislaturas;
+	}
+	
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 }

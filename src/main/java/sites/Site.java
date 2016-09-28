@@ -31,10 +31,9 @@ public abstract class Site {
 			// ((HtmlUnitDriver)driver).setJavascriptEnabled(true);
 			driver = new ChromeDriver();
 		}
-		//for (String n : deps) {
-List<Politico> politicos = JavaBeanToCsv.read();
+		List<Politico> politicos = JavaBeanToCsv.read();// le existentes
 		politicos = getData(navega(getUrl()), politicos);
-		//}
+		JavaBeanToCsv.toCSV(politicos);// salva novos
 		if (driver != null) {
 			driver.close();
 		}
@@ -57,7 +56,6 @@ List<Politico> politicos = JavaBeanToCsv.read();
 							"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36")
 					.get();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

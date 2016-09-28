@@ -12,7 +12,6 @@ import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import modelo.JavaBeanToCsv;
 import modelo.Politico;
 
 public class Senado extends Site {
@@ -37,7 +36,7 @@ public class Senado extends Site {
 
 		Map<String, Politico> pols = new HashMap<String, Politico>();
 		for (Politico politico : politicos) {
-			pols.put(politico.getId(), politico);
+			pols.put(politico.getSenadoId(), politico);
 		}
 		parseData(pols);
 		// // for (Element e : es) {
@@ -47,32 +46,32 @@ public class Senado extends Site {
 		return politicos;
 	}
 
-	private void parseData(Map<String, Politico> politicos1) throws IOException {
+	private void parseData(Map<String, Politico> politicos) throws IOException {
 		Document doc;
 		doc = lePagina();
-		Elements lines = doc.select("tr");
+		Elements lines = doc.select("tbody > tr[data-suplente]");
 		List<String> urls = new ArrayList<String>();
 		for (Element line : lines) {
-			//System.out.println(p.attr("href"));
-			String url1 = line.child(0).child(0).attr("href");
-			String sp[] = url1.split("/");
-			String idsen = sp[sp.length - 1];
-			//if(nao existe){
-			String partido = line.child(1).text();
-			String uf = line.child(2).text();
-			//urls.add();
-			
-			Politico politico = new Politico(idsen, partido, uf, url1);
-			politicos1.put(id, politico);
+			// System.out.println(p.attr("href"));
+			String url = line.select("a").first().attr("href");
+			// if(nao existe){
+			urls.add(url);
+			// String partido = line.child(1).text();
+			// String uf = line.child(2).text();
+			// urls.add();
+
 		}
-		for (String url1 : urls) {
-			doc = navega(url1);
-			
+		for (String url : urls) {
+			doc = navega(url);
+			String sp[] = url.split("/");
+			String idsen = sp[sp.length - 1];
 			String nome = doc.select("dt:matchesOwn(Nome civil:)").first().nextElementSibling().text();
 			String codinome = doc.select("h1 > span").first().text();
 			String foto = doc.select("div > img").first().attr("src");
+			Politico politico = new Politico("", idsen, nome, codinome, "uf", "partidoAtual", "outrosPartidos",
+					"profissoes", "cargo", "legislaturas", foto, "urlCamara");
+			politicos.put(idsen, politico);
 			System.out.println(politico);
 		}
-		JavaBeanToCsv.toCSV(politicos1.values());
 	}
 }

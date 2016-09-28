@@ -28,8 +28,9 @@ public class JavaBeanToCsv {
 			// String nome, UF, formacao;
 			// Set<String> urls, codinomes, partidos, cargos, profissoes;
 			// Set<Integer> legislaturas;
-			String[] columns = new String[] { "id", "nome", "UF", "codinomes", "partidos", "profissoes", "legislaturas",
-					"foto", "urls" };
+			String[] columns = new String[] { "camaraPk", "senadoId", "nome", "codinomes", "uf", "UFNasc",
+					"partidoAtual", "outrosPartidos", "profissoes", "cargos", "legislaturas", "excelenciasorg", "veja",
+					"politicosorg", "wiki", "curriculo", "foto", "urlCamara", "outros" };
 			// Setting the colums for mappingStrategy
 			mappingStrategy.setColumnMapping(columns);
 			// Writing empList to csv file
@@ -75,8 +76,9 @@ public class JavaBeanToCsv {
 		ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();
 		strategy.setType(Politico.class);
 		// id,nome,UF,codinomes,partidos,profissoes,legislaturas,urls
-		String[] columns = new String[] { "id", "nome", "UF", "codinomes", "partidos", "profissoes", "legislaturas",
-				"foto","urls" };
+		String[] columns = new String[] { "camaraPk", "senadoId", "nome", "codinomes", "uf", "UFNasc", "partidoAtual",
+				"outrosPartidos", "profissoes", "cargos", "legislaturas", "excelenciasorg", "veja", "politicosorg",
+				"wiki", "curriculo", "foto", "urlCamara", "outros" };
 		strategy.setColumnMapping(columns);
 		return strategy;
 	}
