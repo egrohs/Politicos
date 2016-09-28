@@ -29,7 +29,7 @@ public class JavaBeanToCsv {
 			// Set<String> urls, codinomes, partidos, cargos, profissoes;
 			// Set<Integer> legislaturas;
 			String[] columns = new String[] { "id", "nome", "UF", "codinomes", "partidos", "profissoes", "legislaturas",
-					"urls" };
+					"foto", "urls" };
 			// Setting the colums for mappingStrategy
 			mappingStrategy.setColumnMapping(columns);
 			// Writing empList to csv file
@@ -65,7 +65,7 @@ public class JavaBeanToCsv {
 		System.out.println(list.size() + " politicos lidos.");
 		for (Object object : list) {
 			Politico employee = (Politico) object;
-			//System.out.println(employee);
+			// System.out.println(employee);
 		}
 		return list;
 	}
@@ -76,7 +76,7 @@ public class JavaBeanToCsv {
 		strategy.setType(Politico.class);
 		// id,nome,UF,codinomes,partidos,profissoes,legislaturas,urls
 		String[] columns = new String[] { "id", "nome", "UF", "codinomes", "partidos", "profissoes", "legislaturas",
-				"urls" };
+				"foto","urls" };
 		strategy.setColumnMapping(columns);
 		return strategy;
 	}

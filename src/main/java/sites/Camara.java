@@ -36,8 +36,8 @@ public class Camara extends Site {
 			WebElement pesq = driver.findElement(By.id("Pesquisa2"));
 			pesq.click();
 
-			Map<String, Politico> pols = new HashMap<String, Politico>();
 			// monta map
+			Map<String, Politico> pols = new HashMap<String, Politico>();
 			for (Politico politico : politicos) {
 				pols.put(politico.getId(), politico);
 			}

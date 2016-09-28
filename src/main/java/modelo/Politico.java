@@ -4,6 +4,7 @@ public class Politico {
 	String id, nome, UF, codinomes, partidos, profissoes, legislaturas, urls;
 	// Set<String> urls, codinomes, partidos, cargos, profissoes, legislaturas;
 	// Set<Integer> legislaturas;
+	private String foto;
 
 	public Politico() {
 	}
@@ -34,6 +35,14 @@ public class Politico {
 		profissoes = profs;
 		legislaturas = legs;
 		urls = url;
+	}
+
+	public Politico(String id, String nome, String codinome, String foto, String url1) {
+		this.id = id;
+		this.nome = nome;
+		codinomes = codinome;
+		this.foto = foto;
+		urls = url1;
 	}
 
 	@Override
