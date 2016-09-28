@@ -11,7 +11,7 @@ public class Politico {
 	public Politico() {
 	}
 
-	// TODO fazer validação semantica dos dados sendo criados.
+	// TODO fazer validacao semantica dos dados sendo criados.
 	public Politico(String camaraPk, String senadoId, String nome, String codinome, String uf, String partidoAtual,
 			String outrosPartidos, String profissoes, String cargo, String legislaturas, String foto,
 			String urlCamara) {

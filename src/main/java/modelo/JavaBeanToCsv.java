@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.bean.BeanToCsv;
-import com.opencsv.bean.ColumnPositionMappingStrategy;
-import com.opencsv.bean.CsvToBean;
+import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
+import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
+import au.com.bytecode.opencsv.bean.CsvToBean;
+
 
 public class JavaBeanToCsv {
 	public static void toCSV(Collection<Politico> politicos) {
@@ -48,14 +48,6 @@ public class JavaBeanToCsv {
 				ee.printStackTrace();
 			}
 		}
-	}
-
-	public static void main(String[] args) throws Exception {
-		// new Camara();
-		// String url =
-		// "http://www2.camara.leg.br/deputados/pesquisa/layouts_deputados_biografia?pk=193117&tipo=0";
-		// System.out.println(url.split("pk=")[1].split("&")[0]);
-		read();
 	}
 
 	public static List<Politico> read() throws Exception {
