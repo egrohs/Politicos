@@ -1,0 +1,34 @@
+Para executar basta:
+mvn ou ./mvnw
+
+
+Importa csv na coleção politic do banco politicos:
+./csv_into_mongo.py -f politics.csv -m politicos.politic
+
+Regera ao CRUD das entidades:
+yo jhipster:import-jdl modelo-colecoes-jdl.jh 
+
+
+mongoimport --db politicos --collection politic --type csv --headerline --file C:\Users\egrohs\git\Politicos\politicos\politics.csv
+
+
+-------------------------
+http://kooljavaee.com/import-csv-into-mysqlmariadb/
+Import CSV into MySQL/MariaDB
+ 26 April 2015  sql, mysql, mariadb, import, csv
+
+Imporiting CSV data into a relational table(s) is actually quite easy but it does however require you to prepare the CSV file accordingly.
+
+1) First , make sure that you have a table that matches the column types and order of the CSV. For this you can use Microsoft Excel or LibreOffice Calc and manually add columns and change data types. If the table has an id column usually its the first column so make sure this matches inthe CSV as well.
+
+2) Also, remove any column header from the CSV file as each line is considered a row and it will produce an error otherwise.
+
+3) Save any changes you made to the CSV and now create a new .sql file with the following:
+
+LOAD DATA LOCAL INFILE "CSV_FILE_NAME.csv"  
+INTO TABLE DATABASE_NAME.TABLE_NAME  
+FIELDS TERMINATED BY ','  
+ENCLOSED BY '\"'  
+LINES TERMINATED BY '\n'  
+Obviously replace the placeholders with your real csv, database and table names. After this verify that data in the correct format in the database. If not, repeat this until its done.
+--------------------------

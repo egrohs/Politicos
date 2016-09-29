@@ -1,0 +1,98 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPoliticoLabel">Create or edit a Politico</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.politico.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.politico.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_camaraPk">Camara Pk</label>
+            <input type="text" class="form-control" name="camaraPk" id="field_camaraPk"
+                    ng-model="vm.politico.camaraPk"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_senadoId">Senado Id</label>
+            <input type="text" class="form-control" name="senadoId" id="field_senadoId"
+                    ng-model="vm.politico.senadoId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nome">Nome</label>
+            <input type="text" class="form-control" name="nome" id="field_nome"
+                    ng-model="vm.politico.nome"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_codinomes">Codinomes</label>
+            <input type="text" class="form-control" name="codinomes" id="field_codinomes"
+                    ng-model="vm.politico.codinomes"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_uf">Uf</label>
+            <input type="text" class="form-control" name="uf" id="field_uf"
+                    ng-model="vm.politico.uf"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_partidoAtual">Partido Atual</label>
+            <input type="text" class="form-control" name="partidoAtual" id="field_partidoAtual"
+                    ng-model="vm.politico.partidoAtual"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_outrosPartidos">Outros Partidos</label>
+            <input type="text" class="form-control" name="outrosPartidos" id="field_outrosPartidos"
+                    ng-model="vm.politico.outrosPartidos"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_profissoes">Profissoes</label>
+            <input type="text" class="form-control" name="profissoes" id="field_profissoes"
+                    ng-model="vm.politico.profissoes"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_cargo">Cargo</label>
+            <input type="text" class="form-control" name="cargo" id="field_cargo"
+                    ng-model="vm.politico.cargo"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_legislaturas">Legislaturas</label>
+            <input type="text" class="form-control" name="legislaturas" id="field_legislaturas"
+                    ng-model="vm.politico.legislaturas"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_foto">Foto</label>
+            <input type="text" class="form-control" name="foto" id="field_foto"
+                    ng-model="vm.politico.foto"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_urls">Urls</label>
+            <input type="text" class="form-control" name="urls" id="field_urls"
+                    ng-model="vm.politico.urls"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

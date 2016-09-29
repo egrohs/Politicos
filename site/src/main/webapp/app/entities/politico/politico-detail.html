@@ -1,0 +1,67 @@
+
+<div>
+    <h2><span>Politico</span> {{vm.politico.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Camara Pk</span></dt>
+        <dd>
+            <span>{{vm.politico.camaraPk}}</span>
+        </dd>
+        <dt><span>Senado Id</span></dt>
+        <dd>
+            <span>{{vm.politico.senadoId}}</span>
+        </dd>
+        <dt><span>Nome</span></dt>
+        <dd>
+            <span>{{vm.politico.nome}}</span>
+        </dd>
+        <dt><span>Codinomes</span></dt>
+        <dd>
+            <span>{{vm.politico.codinomes}}</span>
+        </dd>
+        <dt><span>Uf</span></dt>
+        <dd>
+            <span>{{vm.politico.uf}}</span>
+        </dd>
+        <dt><span>Partido Atual</span></dt>
+        <dd>
+            <span>{{vm.politico.partidoAtual}}</span>
+        </dd>
+        <dt><span>Outros Partidos</span></dt>
+        <dd>
+            <span>{{vm.politico.outrosPartidos}}</span>
+        </dd>
+        <dt><span>Profissoes</span></dt>
+        <dd>
+            <span>{{vm.politico.profissoes}}</span>
+        </dd>
+        <dt><span>Cargo</span></dt>
+        <dd>
+            <span>{{vm.politico.cargo}}</span>
+        </dd>
+        <dt><span>Legislaturas</span></dt>
+        <dd>
+            <span>{{vm.politico.legislaturas}}</span>
+        </dd>
+        <dt><span>Foto</span></dt>
+        <dd>
+            <span>{{vm.politico.foto}}</span>
+        </dd>
+        <dt><span>Urls</span></dt>
+        <dd>
+            <span>{{vm.politico.urls}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="politico-detail.edit({id:vm.politico.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,30 @@
+
+entity Politico {
+camaraPk String,
+senadoId String,
+nome String,
+codinomes String,
+uf String,
+partidoAtual String,
+outrosPartidos String,
+profissoes String,
+cargo String,
+legislaturas String,
+foto String,
+urls String,
+curriculo String
+}
+
+//enum State {
+//AC,AL,AP,AM,BA,CE,DF,ES,GO,MA,MT,MS,MG,PA,PB,PR,PE,PI,RJ,RN,RS,RO,RR,SC,SP,SE,TO
+//}
+
+// Set pagination options
+paginate Politico with infinite-scroll
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+angularSuffix * with politico
+
