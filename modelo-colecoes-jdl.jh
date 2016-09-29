@@ -1,0 +1,63 @@
+
+entity Politicos {
+	camarapk Long,
+	nome String,
+    codinomes String,
+	estado UF,
+//    email String,
+	curriculo String,
+    //foto String,//ou blob?
+	cargo String,
+    urlCamara String,
+    legislatures String,
+    created ZonedDateTime,
+    updated ZonedDateTime
+}
+
+entity Partidos {
+	id String,
+    nome String,
+	sigla String required,
+    numero String,
+    dataCriacao String,
+    registroDefinitivo String,
+    filiados Integer,
+    presidenteatual String,
+    dissolucao ZonedDateTime,
+    espectroPolitico String,
+    ideologia String
+}
+
+entity Urls {
+	id String,
+    url String,
+    tipo TipoUrl
+}
+
+enum TipoUrl {
+    INFO, FDP
+}
+
+enum UF {
+	AC,AL,AP,AM,BA,CE,DF,ES,GO,MA,MT,MS,MG,PA,PB,PR,PE,PI,RJ,RN,RS,RO,RR,SC,SP,SE,TO
+}
+
+relationship OneToMany {
+	Politicos{todos} to Partidos,
+    Politicos{urls} to Urls,
+    Partidos{urls} to Urls
+}
+
+relationship OneToOne {
+	Politicos{atual} to Partidos,
+    Politicos{foto} to Urls
+}
+
+// Set pagination options
+paginate Politicos with infinite-scroll
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+angularSuffix * with politic

@@ -7,7 +7,6 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.BeanToCsv;
@@ -19,7 +18,7 @@ public class JavaBeanToCsv {
 		CSVWriter csvWriter = null;
 		try {
 			// Create CSVWriter for writing to Employee.csv
-			csvWriter = new CSVWriter(new OutputStreamWriter(new FileOutputStream("saida.csv"), "UTF-8"));
+			csvWriter = new CSVWriter(new OutputStreamWriter(new FileOutputStream("politicos.csv"), "UTF-8"));
 			BeanToCsv bc = new BeanToCsv();
 			// mapping of columns with their positions
 			ColumnPositionMappingStrategy mappingStrategy = new ColumnPositionMappingStrategy();
@@ -28,8 +27,9 @@ public class JavaBeanToCsv {
 			// String nome, UF, formacao;
 			// Set<String> urls, codinomes, partidos, cargos, profissoes;
 			// Set<Integer> legislaturas;
-			String[] columns = new String[] { "id", "nome", "UF", "codinomes", "partidos", "profissoes", "legislaturas",
-					"urls" };
+			String[] columns = new String[] { "camaraPk", "senadoId", "nome", "codinomes", "uf", "UFNasc",
+					"partidoAtual", "outrosPartidos", "profissoes", "cargos", "legislaturas", "excelenciasorg", "veja",
+					"politicosorg", "wiki", "curriculo", "foto", "urlCamara", "outros" };
 			// Setting the colums for mappingStrategy
 			mappingStrategy.setColumnMapping(columns);
 			// Writing empList to csv file
@@ -49,23 +49,15 @@ public class JavaBeanToCsv {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		// new Camara();
-		// String url =
-		// "http://www2.camara.leg.br/deputados/pesquisa/layouts_deputados_biografia?pk=193117&tipo=0";
-		// System.out.println(url.split("pk=")[1].split("&")[0]);
-		read();
-	}
-
 	public static List<Politico> read() throws Exception {
 		CsvToBean csv = new CsvToBean();
-		CSVReader csvReader = new CSVReader(new InputStreamReader(new FileInputStream("saida.csv"), "UTF-8"));
+		CSVReader csvReader = new CSVReader(new InputStreamReader(new FileInputStream("politicos.csv"), "UTF-8"));
 		// Set column mapping strategy
 		List<Politico> list = csv.parse(setColumMapping(), csvReader);
 		System.out.println(list.size() + " politicos lidos.");
 		for (Object object : list) {
 			Politico employee = (Politico) object;
-			//System.out.println(employee);
+			// System.out.println(employee);
 		}
 		return list;
 	}
@@ -75,8 +67,9 @@ public class JavaBeanToCsv {
 		ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();
 		strategy.setType(Politico.class);
 		// id,nome,UF,codinomes,partidos,profissoes,legislaturas,urls
-		String[] columns = new String[] { "id", "nome", "UF", "codinomes", "partidos", "profissoes", "legislaturas",
-				"urls" };
+		String[] columns = new String[] { "camaraPk", "senadoId", "nome", "codinomes", "uf", "UFNasc", "partidoAtual",
+				"outrosPartidos", "profissoes", "cargos", "legislaturas", "excelenciasorg", "veja", "politicosorg",
+				"wiki", "curriculo", "foto", "urlCamara", "outros" };
 		strategy.setColumnMapping(columns);
 		return strategy;
 	}

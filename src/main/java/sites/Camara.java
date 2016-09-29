@@ -12,11 +12,9 @@ import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import modelo.JavaBeanToCsv;
 import modelo.Politico;
 
 public class Camara extends Site {
-	// TODO foto http://www.camara.gov.br/internet/deputado/bandep/169553.jpg
 	public Camara() throws Exception {
 		super(true);
 	}
@@ -31,31 +29,30 @@ public class Camara extends Site {
 		// WebElement nome = driver.findElement(By.id("nome"));
 		// nome.sendKeys(n);
 		WebElement leg = driver.findElement(By.name("Legislatura"));
-		// leg.sendKeys("Qualquer Legislatura...");
-		leg.sendKeys("50º - 1995 a 1999");
+		leg.sendKeys("Qualquer Legislatura...");
 		WebElement pesq = driver.findElement(By.id("Pesquisa2"));
 		pesq.click();
 
-		Map<String, Politico> pols = new HashMap<String, Politico>();
 		// monta map
+		Map<String, Politico> pols = new HashMap<String, Politico>();
 		for (Politico politico : politicos) {
-			pols.put(politico.getId(), politico);
+			pols.put(politico.getCamaraPk(), politico);
 		}
-		parseData(pols);
-
-		// // for (Element e : es) {
-		// // System.out.println(e.text());
-		// // }
-		// //span
+		pegaUrlsNavega(pols);
 		return politicos;
 	}
 
-	private void parseData(Map<String, Politico> politicos) {
-		Document doc;
-		List<String> urls = novosPoliticos(politicos);
-		for (String polURL : urls) {
-			doc = navega(polURL);
-			System.out.println(polURL);
+	private void pegaUrlsNavega(Map<String, Politico> politicos) {
+		Document doc = lePagina();
+		List<String> urls = new ArrayList<String>();
+		try {
+			urls.add(doc.select("div#content > ul > li > a").first().attr("href"));
+		} catch (Exception e) {
+			System.err.println("SEM URL");
+		}
+		for (String camaraUrl : urls) {
+			navega(camaraUrl);
+			System.out.println(camaraUrl);
 			// http://www2.camara.leg.br/deputados/pesquisa/layouts_deputados_biografia?pk=5830756
 			// http://www2.camara.leg.br/deputados/pesquisa/layouts_deputados_biografia?pk=178957
 
@@ -66,98 +63,81 @@ public class Camara extends Site {
 				System.out.println("Sem link biografia!");
 			}
 
-			doc = lePagina();
-			String id = driver.getCurrentUrl().split("pk=")[1].replaceFirst("\\D.+", "");
-			// System.out.println(id);
-			if (!politicos.keySet().contains(id)) {
-				String codinome = "";
-				try {
-					codinome = doc.select("div.bioNomParlamentrPartido").first().text();
-					String nome = "";
-					String estado = "";
-					String profissoes = "";
-					try {
-						Element bio = doc.select("div.bioDetalhes").first();
-						nome = bio.select("strong").first().text();
-						try {
-							estado = bio.select("span:matchesOwn(Naturalidade)").first().nextElementSibling().text();
-						} catch (Exception e) {
-							System.out.println("Não achou Naturalidade: " + polURL);
-						}
-						try {
-							profissoes = bio.select("span:matchesOwn(Profissões)").first().nextElementSibling().text();
-						} catch (Exception e) {
-							try {
-								profissoes = bio.select("span:matchesOwn(Escolaridade)").first().child(0).text();
-							} catch (Exception e1) {
-								System.out.println("Não achou Escolaridade: " + polURL);
-							}
-						}
-					} catch (Exception e1) {
-						System.err.println("Não achou div.bioDetalhes ou Nome: " + polURL);
-					}
-					Elements legs = null;
-					try {
-						//legs = doc.select("div.bioOutros").first().select("a > span");
-						legs = doc.select("span:matchesOwn(Legislaturas)").first().siblingElements().select("a > span");
-					} catch (Exception e) {
-						System.out.println("Não achou div.bioOutros ou Legislaturas: " + polURL);
-					}
-					String legis = "";
-					if (legs != null) {
-						StringBuffer sb = new StringBuffer();
-						for (Element el : legs) {
-							sb.append(el.text() + ", ");
-						}
-						legis = sb.toString();// legislaturas
-					}
-					//WebElement parts = null;
-					//Element parts=null;
-					String par = "";
-					try {
-						//parts = driver.findElement(By.xpath("//div[@class='bioOutrosTitulo' and text()='Filiações Partidárias: ']/following-sibling::div"));
-						par = doc.select("div:matchesOwn(Filiações Partidárias)").first().nextElementSibling().text();
-					} catch (Exception e) {
-						try {
-							//parts = driver.findElement(By.xpath("//div[@class='bioOutrosTitulo' and text()='Atividades Partidárias:']/following-sibling::div"));
-							par = doc.select("span:matchesOwn(Atividades Partidárias)").first().nextElementSibling().text();
-						} catch (Exception e1) {
-							System.out.println("Não achou div.bioOutrosTitulo ou Atividades Partidárias: " + polURL);
-						}
-					}
-//					if (parts != null) {
-//						par = parts.text();// partidos
-//					}
-					Politico politico = new Politico(id, nome, estado, codinome, par, profissoes, legis, polURL);
-					politicos.put(polURL, politico);
-					System.out.println(politico);
-				} catch (Exception e2) {
-					System.err.println("Não achou div.bioNomParlamentrPartido");
-				}
-			}
+			scrapDataCriaPolitico(politicos, camaraUrl);
 		}
-		JavaBeanToCsv.toCSV(politicos.values());
 	}
 
-	private List<String> novosPoliticos(Map<String, Politico> politicos) {
-		Document doc;
-		doc = lePagina();
-		Elements epols = doc.select("div#content > ul > li > a");
-		List<String> urls = new ArrayList<String>();
-		for (Element p : epols) {
-			String url = p.attr("href");
-			String pk = url.split("pk=")[1];
-			if (pk.contains("&")) {
-				pk = pk.split("&")[0];
-			}
-			// só busca politicos novos
-			if (politicos.get(pk) == null) {
-				// http://www2.camara.gov.br/deputados/pesquisa/layouts_deputados_biografia?pk=139355&tipo=0
-				// http://www2.camara.leg.br/deputados/pesquisa/layouts_deputados_biografia?pk=178957
-				// http://www.camara.leg.br/internet/deputado/Dep_Detalhe.asp?id=
-				urls.add(url);
+	private void scrapDataCriaPolitico(Map<String, Politico> politicos, String camaraUrl) {
+		Document doc = lePagina();
+		String camaraPk = driver.getCurrentUrl().split("pk=")[1].replaceFirst("\\D.+", "");
+		// System.out.println(id);
+		if (!politicos.keySet().contains(camaraPk)) {
+			String codinome = "";
+			try {
+				String cab = doc.select("div.bioNomParlamentrPartido").first().text();
+				String txt[] = cab.split(" - ");
+				codinome = txt[0];
+				txt = txt[1].split("/");
+				String partidoAtual = txt[0];
+				String nome = "";
+				String uf = txt[1];
+				String profissoes = "";
+				try {
+					Element bio = doc.select("div.bioDetalhes").first();
+					nome = bio.select("strong").first().text();
+					try {
+						profissoes = bio.select("span:matchesOwn(Profissï¿½es)").first().nextElementSibling().text();
+					} catch (Exception e) {
+						try {
+							profissoes = bio.select("span:matchesOwn(Escolaridade)").first().child(0).text();
+						} catch (Exception e1) {
+							System.out.println("Nao achou Escolaridade: " + camaraUrl);
+						}
+					}
+				} catch (Exception e1) {
+					System.err.println("Nao achou div.bioDetalhes ou Nome: " + camaraUrl);
+				}
+				Elements legs = null;
+				try {
+					legs = doc.select("span:matchesOwn(Legislaturas)").first().siblingElements().select("a > span");
+				} catch (Exception e) {
+					System.out.println("Nao achou div.bioOutros ou Legislaturas: " + camaraUrl);
+				}
+				String legislaturas = "";
+				if (legs != null) {
+					StringBuffer sb = new StringBuffer();
+					for (Element el : legs) {
+						sb.append(el.text() + ", ");
+					}
+					legislaturas = sb.toString();// legislaturas
+				}
+
+				String camaraFoto = "";
+				try {
+					camaraFoto = doc.select("div.bioFoto > img").attr("src");
+				} catch (Exception e) {
+					System.out.println("Nao achou div.bioFoto : " + camaraUrl);
+				}
+
+				String outrosPartidos = "";
+				try {
+					outrosPartidos = doc.select("div:matchesOwn(FiliaÃ§Ãµes PartidÃ¡rias)").first().nextElementSibling()
+							.text();
+				} catch (Exception e) {
+					try {
+						outrosPartidos = doc.select("span:matchesOwn(Atividades PartidÃ¡rias)").first()
+								.nextElementSibling().text();
+					} catch (Exception e1) {
+						System.out.println("Nao achou div.bioOutrosTitulo ou Atividades PartidÃ¡rias: " + camaraUrl);
+					}
+				}
+				Politico politico = new Politico(camaraPk, "", nome, codinome, uf, partidoAtual, outrosPartidos,
+						profissoes, "Camara", legislaturas, camaraFoto, camaraUrl);
+				politicos.put(camaraUrl, politico);
+				System.out.println(politico);
+			} catch (Exception e2) {
+				System.err.println("Nao achou div.bioNomParlamentrPartido");
 			}
 		}
-		return urls;
 	}
 }

@@ -23,7 +23,6 @@ public abstract class Site {
 	public abstract List<Politico> getData(Document doc, List<Politico> politicos) throws IOException;
 
 	public Site(boolean needDriver) throws Exception {
-		List<Politico> politicos = JavaBeanToCsv.read();
 		if (needDriver) {
 			// FirefoxProfile profile = new FirefoxProfile();
 			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
@@ -32,7 +31,9 @@ public abstract class Site {
 			// ((HtmlUnitDriver)driver).setJavascriptEnabled(true);
 			driver = new ChromeDriver();
 		}
+		List<Politico> politicos = JavaBeanToCsv.read();// le existentes
 		politicos = getData(navega(getUrl()), politicos);
+		JavaBeanToCsv.toCSV(politicos);// salva novos
 		if (driver != null) {
 			driver.close();
 		}
@@ -55,7 +56,6 @@ public abstract class Site {
 							"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36")
 					.get();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
