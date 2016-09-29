@@ -1,0 +1,60 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "camaraPk",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "senadoId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "codinomes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "uf",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "partidoAtual",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "outrosPartidos",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "profissoes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cargo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "legislaturas",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "foto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "urls",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20160928211157",
+    "entityTableName": "politico",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "angularSuffix": "politico"
+}

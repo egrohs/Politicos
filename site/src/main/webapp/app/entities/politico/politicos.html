@@ -1,0 +1,95 @@
+<div>
+    <h2>Politicos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="politico.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs" >
+                        Create new Politico
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="Query">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="camaraPk"><span>Camara Pk</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="senadoId"><span>Senado Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nome"><span>Nome</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="codinomes"><span>Codinomes</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="uf"><span>Uf</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="partidoAtual"><span>Partido Atual</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="outrosPartidos"><span>Outros Partidos</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="profissoes"><span>Profissoes</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cargo"><span>Cargo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="legislaturas"><span>Legislaturas</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="foto"><span>Foto</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="urls"><span>Urls</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="politico in vm.politicos track by politico.id">
+                    <td><a ui-sref="politico-detail({id:politico.id})">{{politico.id}}</a></td>
+                    <td>{{politico.camaraPk}}</td>
+                    <td>{{politico.senadoId}}</td>
+                    <td>{{politico.nome}}</td>
+                    <td>{{politico.codinomes}}</td>
+                    <td>{{politico.uf}}</td>
+                    <td>{{politico.partidoAtual}}</td>
+                    <td>{{politico.outrosPartidos}}</td>
+                    <td>{{politico.profissoes}}</td>
+                    <td>{{politico.cargo}}</td>
+                    <td>{{politico.legislaturas}}</td>
+                    <td>{{politico.foto}}</td>
+                    <td>{{politico.urls}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="politico-detail({id:politico.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="politico.edit({id:politico.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="politico.delete({id:politico.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
